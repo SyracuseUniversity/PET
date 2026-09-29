@@ -19,7 +19,6 @@ You'll need to test your changes by hand. [Testing your changes](#testing-your-c
 
 **4. There is no license yet.**
 The project doesn't have an open-source license yet. One will be added soon. Until then, we can discuss issues and review pull requests, but **we won't merge contributions from outside DSL until the license is in place.** Once it is, contributions are accepted under that license (see `LICENSE`).
-<!-- MAINTAINERS: When LICENSE is added, delete the sentence in bold above. -->
 
 ---
 
@@ -95,5 +94,4 @@ Run it locally (see `witec-demo/README.md`, Part 2), then:
 
 ## Questions
 
-Open an issue.
-<!-- TODO: Add a DSL contact for questions that shouldn't be public. -->
+Open an issue, or contact **Dominick Miceli**, Product Lead & Partner Liaison, at dcmiceli@syr.edu.

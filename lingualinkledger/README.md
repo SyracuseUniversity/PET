@@ -43,7 +43,6 @@ The plugin requests the `MANAGE_EXTERNAL_STORAGE` permission so it can read and 
 | Android device | ATAK-CIV **5.4.0** installed, developer mode and USB debugging enabled |
 
 > **Match the ATAK version.** The plugin is built for ATAK **5.4.0** (`ATAK_VERSION` in `app/build.gradle`), and ATAK loads only plugins built for its own version. Download the **5.4.0** SDK release, not the latest one, and install the ATAK APK from that same SDK on your device.
-> <!-- TODO: Replace with the exact SDK release tag used by the team (e.g. 5.4.0.xx). -->
 
 ---
 
@@ -57,22 +56,21 @@ The plugin requests the `MANAGE_EXTERNAL_STORAGE` permission so it can read and 
 
 ### 2. Put the repo in the right place
 
-Clone the PET repository **directly into the SDK root**:
+Clone the PET repository **as the `plugins` folder** inside the SDK:
+
+```bash
+git clone https://github.com/SyracuseUniversity/PET.git atak-civ-sdk/plugins
+```
 
 ```
 atak-civ-sdk/
 ├── atak-gradle-takdev.jar
-└── PET/                  ← clone here
-    └── lingualinkledger/           ← open this folder in Android Studio
+└── plugins/                  ← the PET repository
+    ├── lingualinkledger/     ← open this folder in Android Studio
+    └── witec-demo/
 ```
 
-**Why this location:** the build needs `atak-gradle-takdev.jar`, which ships with the SDK. By default, `app/build.gradle` looks for it two folders above `lingualinkledger/`, and this layout puts it there.
-
-**To keep the repo somewhere else,** add this line to `lingualinkledger/local.properties` (step 4):
-
-```properties
-takdev.plugin=<absolute path to>/atak-civ-sdk/atak-gradle-takdev.jar
-```
+**Why this location:** the build needs `atak-gradle-takdev.jar`, which ships with the SDK. `app/build.gradle` looks for it two folders above `lingualinkledger/`. Cloning PET as `plugins/` puts the plugin at `atak-civ-sdk/plugins/lingualinkledger`, the same path as the original setup, so the jar is found there.
 
 ### 3. Generate signing keys
 
@@ -107,7 +105,7 @@ On Windows, escape backslashes in paths (`C:\\Users\\...`) or use forward slashe
 
 ### 5. Configure Android Studio
 
-1. Open `atak-civ-sdk/PET/lingualinkledger/` (the folder containing `settings.gradle`).
+1. Open `atak-civ-sdk/plugins/lingualinkledger/` (the folder containing `settings.gradle`).
 2. Go to **File → Project Structure**, and under **Project** change the Gradle version to **8.9**.
 3. Set the Gradle JDK to **Java 17** (Java 17 works at the time of writing): press **Shift** twice, search for "Gradle JDK", and select 17.
 4. Click the dropdown next to the **Run** button → **Edit Configurations**, and under **Launch Options** set **Launch** to **Nothing**, then apply. The plugin has no app screen of its own; Android Studio installs it and ATAK loads it.
@@ -171,7 +169,7 @@ There are no meaningful automated tests yet. `ExampleTest.java` is a template pl
 
 - **ATAK APK won't install:** you may not be able to install it if a different TAK version was installed before. Try removing any TAK-related folders and files from the device, then install again.
 - **After installing ATAK:** grant all permissions, then manually go to Android **Settings** and allow ATAK to access location **all the time**.
-- **Gradle can't find `atak-takdev-plugin`:** the build can't locate `atak-gradle-takdev.jar`. Check the repo location ([step 2](#2-put-the-repo-in-the-right-place)) or set `takdev.plugin` in `local.properties`.
+- **Gradle can't find `atak-takdev-plugin`:** the build can't locate `atak-gradle-takdev.jar`. Check the repo location ([step 2](#2-put-the-repo-in-the-right-place)).
 - **Plugin installs but doesn't appear in ATAK:** check that the ATAK version on the device matches the SDK version the plugin was built against.
 - More setup help: [LearnATAK: Android Studio setup](https://toyon.github.io/LearnATAK/docs/setup/android_studio_setup/) (third-party guide).
 

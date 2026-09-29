@@ -8,19 +8,8 @@ PET is a **research prototype** that runs on the **Ethereum Sepolia testnet**. I
 
 **Please do not report security issues in public GitHub issues, discussions, or pull requests.**
 
-<!--
-  MAINTAINERS: When this repository becomes public, enable private reporting:
-  Settings → Security (or "Code security and analysis") → Private vulnerability reporting → Enable.
-  Then delete the "(not yet enabled)" note below.
-  Private vulnerability reporting is not available for private repositories.
--->
-
-**Preferred: GitHub private vulnerability reporting** _(not yet enabled)_
+**Report through GitHub vulnerability reporting**.   
 Go to the repository's **Security** tab and click **Report a vulnerability**. Only the maintainers can see the report.
-
-**Alternative: email**
-<!-- TODO: Replace with a monitored DSL contact address. -->
-Email _TODO: security contact (DSL, Syracuse University)_ with "PET security" in the subject line.
 
 Please include:
 
@@ -28,8 +17,6 @@ Please include:
 - steps to reproduce, or a proof of concept
 - the impact you expect
 - whether the issue affects a running deployment
-
-PET is maintained by a university research lab, not a dedicated security team. We will acknowledge reports as soon as we can, but we can't promise response or fix times.
 
 ---
 
@@ -53,42 +40,40 @@ This model shapes what PET can and cannot prove today:
 
 ## Known issues
 
-Every issue below is also tracked in `CODE_CLEANUP.txt`, with the item number shown.
-
 ### Gateway (`witec-demo/gateway/server.py`)
 
-| Issue | Impact | Cleanup item |
-|---|---|---|
-| No authentication or rate limiting on any endpoint | Anyone who can reach the server can create, verify, or deactivate records, and every write spends the gateway wallet's funds | 17 |
-| One server wallet signs every transaction | On-chain `creator` and `verifier` are always the gateway's address, never the field user | 17 |
-| Private key stored in plain text in `.env` on the server | Anyone with access to the server or its backups can take the wallet | 17 |
-| `app.run(debug=True)` | Flask debug mode exposes an interactive debugger if an unhandled error reaches it. In the reference setup the app runs under systemd behind nginx, and port 5000 isn't opened in the Azure firewall rules | 17 |
-| Raw exception text returned to clients | Error responses can reveal internal details (RPC URLs, node errors, file paths) | 17 |
-| Hashes without a `0x` prefix are truncated to 32 characters | Only half of a SHA-256 hex string is stored, and the call still reports success | 15 |
-| Record ID fallback in `/create-record` | If the event can't be read, the gateway returns the contract's latest record ID, which can belong to someone else's record | 26 |
+| Issue | Impact |
+|---|---|
+| No authentication or rate limiting on any endpoint | Anyone who can reach the server can create, verify, or deactivate records, and every write spends the gateway wallet's funds |
+| One server wallet signs every transaction | On-chain `creator` and `verifier` are always the gateway's address, never the field user |
+| Private key stored in plain text in `.env` on the server | Anyone with access to the server or its backups can take the wallet |
+| `app.run(debug=True)` | Flask debug mode exposes an interactive debugger if an unhandled error reaches it. In the reference setup the app runs under systemd behind nginx, and port 5000 isn't opened in the Azure firewall rules |
+| Raw exception text returned to clients | Error responses can reveal internal details (RPC URLs, node errors, file paths) |
+| Hashes without a `0x` prefix are truncated to 32 characters | Only half of a SHA-256 hex string is stored, and the call still reports success |
+| Record ID fallback in `/create-record` | If the event can't be read, the gateway returns the contract's latest record ID, which can belong to someone else's record |
 
 ### Smart contract (`witec-demo/helpers/TimberDemo.sol`)
 
-| Issue | Impact | Cleanup item |
-|---|---|---|
-| `deactivateRecord()` has no access control | Any address can deactivate any record | 17 |
-| `addValidRole()` has no access control (`// add access control here`) | Any address can create new roles | 17 |
-| `verifyRecord()` trusts the role string | Any caller can claim to be a `logger`, `trucker`, or `processor` | 17 |
+| Issue | Impact |
+|---|---|
+| `deactivateRecord()` has no access control | Any address can deactivate any record |
+| `addValidRole()` has no access control (`// add access control here`) | Any address can create new roles |
+| `verifyRecord()` trusts the role string | Any caller can claim to be a `logger`, `trucker`, or `processor` |
 
 ### Plugin (`lingualinkledger/`)
 
-| Issue | Impact | Cleanup item |
-|---|---|---|
-| `.gitignore` does not exclude `*.keystore` | Following the setup steps, signing keys could be committed to the public repo | 3 |
-| Hardcoded keystore passwords in `app/build.gradle` | They look like public TAK template defaults. Anything signed with them should not be trusted | 5 |
-| Hashes and metadata are stored only on the device | Anyone with access to device storage can change a package before it is hashed, or change the stored hash file (it is set read-only, but that is not tamper-proof) | 10 |
-| `MANAGE_EXTERNAL_STORAGE` permission | Asks for access to all shared storage on the device, though the plugin only uses ATAK's folders. It may not be needed at all, since ATAK runs plugin code under its own permissions (unverified) | 27 |
+| Issue | Impact |
+|---|---|
+| `.gitignore` does not exclude `*.keystore` | Following the setup steps, signing keys could be committed to the public repo |
+| Hardcoded keystore passwords in `app/build.gradle` | They look like public TAK template defaults. Anything signed with them should not be trusted |
+| Hashes and metadata are stored only on the device | Anyone with access to device storage can change a package before it is hashed, or change the stored hash file (it is set read-only, but that is not tamper-proof) |
+| `MANAGE_EXTERNAL_STORAGE` permission | Asks for access to all shared storage on the device, though the plugin only uses ATAK's folders. It may not be needed at all, since ATAK runs plugin code under its own permissions (unverified) |
 
 ### General
 
-| Issue | Impact | Cleanup item |
-|---|---|---|
-| Unpinned Python dependencies | Installs aren't reproducible, and a dependency update can change behavior | 20 |
+| Issue | Impact |
+|---|---|
+| Unpinned Python dependencies | Installs aren't reproducible, and a dependency update can change behavior |
 
 ---
 

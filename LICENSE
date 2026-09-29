@@ -1,0 +1,19 @@
+LICENSE - NOT YET CHOSEN
+
+No open-source license has been chosen for this repository yet. A license
+will be added once it is confirmed by the Dynamic Sustainability Lab (DSL)
+and Syracuse University.
+
+Until then, all rights are reserved by the authors, and no permission is
+granted to use, copy, modify, or distribute this code.
+
+Existing license declarations in the code
+-----------------------------------------
+Two files already contain license declarations from before the
+repositories were combined. They were not chosen as the project license,
+and they conflict with each other:
+
+  - witec-demo/helpers/TimberDemo.sol   SPDX-License-Identifier: MIT
+  - witec-demo/package.json             "license": "ISC"
+
+These will be reviewed when the project license is chosen.

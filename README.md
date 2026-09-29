@@ -10,16 +10,9 @@ PET is developed by the [Dynamic Sustainability Lab (DSL)](#authors) at Syracuse
 
 ## Background
 
-<!-- TODO: 2–3 sentences on the USDA AMP program and how PET supports its objective. -->
-_TODO: Describe the USDA AMP objective and how PET contributes to it._
+Provable Evidence Tracing, in its current form, provides a tamper-proof ledger of supply chain events throughout the forestry industry. Building on the GIS and time stamp from ATAK, these supply chain events are stored on the blockchain, so auditors can prove that no data has been tampered with. It can track a timber batch from the logger, through the transfer of custody to the trucker, and through another transfer of custody to the processor. This is a work in progress, and as progress resumes, Provable Evidence Tracing will be shifting its focus to tracking a seed throughout its time in a nursery.
 
-Timber moves through many hands between harvest and processing, and each handoff is a chance for records to be lost, disputed, or altered. PET is designed to:
-
-1. Capture evidence where the event happens, on an Android device running ATAK.
-2. Hash that evidence, so any later change to the file produces a different fingerprint.
-3. Record the hash on a public blockchain with a timestamp, and let each supply-chain role add a verification entry.
-
-The goal is a chain of custody that no single party can quietly rewrite. The current prototype doesn't reach that yet: the plugin and the blockchain aren't connected, one wallet signs every transaction, and the contract has no access control. See [Known limitations](#known-limitations).
+On the `main` branch, the plugin and the blockchain backend are not yet connected. See [Known limitations](#known-limitations).
 
 ## How it works
 
@@ -65,7 +58,7 @@ Each component builds and runs independently. Start with the one you need.
 
 **Plugin** ([`lingualinkledger/README.md`](lingualinkledger/README.md)): requires the [ATAK-CIV SDK](https://github.com/TAK-Product-Center/atak-civ/releases), Android Studio, JDK 17, and an Android device with ATAK-CIV installed. Targets ATAK 5.4.0.
 
-> **Where to put the repo:** clone PET directly into the root of the extracted SDK, as `atak-civ-sdk/PET/`. The plugin build looks for `atak-gradle-takdev.jar` two folders above `lingualinkledger/`, and this location puts it there. To keep the repo somewhere else, set `takdev.plugin=<path to atak-gradle-takdev.jar>` in `lingualinkledger/local.properties`. Details are in the plugin README.
+> **Where to put the repo:** clone PET as the `plugins` folder inside the extracted SDK (`git clone https://github.com/SyracuseUniversity/PET.git atak-civ-sdk/plugins`). The plugin build looks for `atak-gradle-takdev.jar` two folders above `lingualinkledger/`, and this puts the plugin at `atak-civ-sdk/plugins/lingualinkledger`, the same path as the original setup. Details are in the plugin README.
 
 **Blockchain backend** ([`witec-demo/README.md`](witec-demo/README.md)): requires Node.js and npm (Hardhat), Python 3 (Flask, web3.py), a Sepolia RPC endpoint (the gateway's gas-price lookup expects an Infura URL), and a funded Sepolia wallet. The reference deployment runs on an Ubuntu 22.04 Azure VM behind nginx.
 
@@ -111,17 +104,29 @@ Developed by the **Dynamic Sustainability Lab (DSL), Syracuse University**.
 
 ### Contributors
 
-<!-- TODO: Confirm names and preferred attribution with each contributor. -->
-- _TODO: Plugin developer(s)_
-- _TODO: Blockchain backend developer(s)_
-- _TODO: Documentation_
+<!-- TODO: Add missing contact emails or GitHub accounts. -->
+| Name | Role | Contact |
+|---|---|---|
+| Dominick Miceli | Product Lead & Partner Liaison | dcmiceli@syr.edu |
+| Darrel Ramasray | Blockchain Developer (App Architecture, Backend) | ddramasr@syr.edu |
+| William Cook | UI/UX Developer | kcook22@syr.edu |
+| Melanie Thomas | Technical Documentation and GitHub | mthoma72@syr.edu |
+| Lee McKnight | Faculty Supervisor | lmcknigh@syr.edu |
+
+**Former contributors**
+
+| Name | Role | Contact |
+|---|---|---|
+| Rohan Yadav | Backend Developer | https://github.com/rohany395 |
+| Arsen Khanin | Blockchain Developer | https://github.com/eternal-dissident |
 
 ## License
 
 <!-- TODO: License pending confirmation with DSL / Syracuse University. -->
-_License to be determined._ Until a license is added, all rights are reserved by the authors.
+_License to be determined._ Until a license is added, all rights are reserved by the authors. See [`LICENSE`](LICENSE).
 
 ## Acknowledgments
 
 - The plugin is built on the ATAK-CIV plugin template from the [TAK Product Center](https://github.com/TAK-Product-Center/atak-civ).
-- _TODO: Funding acknowledgment (USDA AMP)._
+- This work by the Dynamic Sustainability Lab at Syracuse University is supported by the U.S. Department of Agriculture (USDA) through the Advancing Markets for Forestry (AMP) program. The findings, conclusions, and opinions expressed are those of the authors and do not necessarily reflect the views of the USDA.
+  <!-- TODO: Replace with the standard acknowledgment sentence Dr. McKnight is drafting. -->
