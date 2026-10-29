@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The main screen, layout T1 (D53, D54): the capture flow first, as in the
+    deck (the four stages, and one action that scans a batch's QR), with
+    Status and Help in the title bar and the fixed tools under "Tools",
+    closed until tapped. The pane scrolls in landscape.
+
+    Anything not working yet in this build is visibility="gone" here, so
+    every control on screen works (D53); each is shown in the step that
+    makes it work.
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fadeScrollbars="false"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp">
+
+    <!-- PL-37: padding, not a margin. A ScrollView scrolls by its child's
+         height alone, so a margin here was never scrolled into view. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/app_name" />
+
+            <Button
+                android:id="@+id/status_button"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="Status"
+                android:layout_marginRight="8dp"
+                style="@style/darkButton" />
+
+            <Button
+                android:id="@+id/help_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:text="?"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/help_button_bg" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/record_stage_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="RECORD A STAGE"
+                android:textColor="@color/heading_yellow"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/stage_collecting_button"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="8dp"
+                    android:text="Collecting"
+                    style="@style/darkButton" />
+
+                <Button
+                    android:id="@+id/stage_cleaning_button"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Cleaning"
+                    style="@style/darkButton" />
+            </LinearLayout>
+
+            <!-- Stored and Planting: Day 3, step 11 -->
+            <LinearLayout
+                android:id="@+id/stage_row_stored_planting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:id="@+id/stage_stored_button"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="8dp"
+                    android:text="Stored"
+                    style="@style/darkButton" />
+
+                <Button
+                    android:id="@+id/stage_planting_button"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Planting"
+                    style="@style/darkButton" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/batch_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/look_up_batch_button"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginRight="8dp"
+                android:text="Look up batch"
+                style="@style/darkButton" />
+
+            <Button
+                android:id="@+id/saved_batches_button"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="Saved batches"
+                style="@style/darkButton" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tools_toggle"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:text="Tools  ▸"
+            android:textColor="@color/heading_yellow"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/tools_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/create_edit_dp_button"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="8dp"
+                    android:text="Create/Edit Data Package"
+                    style="@style/darkButton" />
+
+                <Button
+                    android:id="@+id/create_evidence_trace_button"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="Create Evidence Trace"
+                    style="@style/darkButton" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/add_stage_event_button"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="8dp"
+                    android:text="Add Stage Event"
+                    style="@style/darkButton" />
+
+                <Button
+                    android:id="@+id/send_dp_button"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="Send Data Package"
+                    style="@style/darkButton" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create / Edit Data Package"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="12dp"
+            android:gravity="center" />
+
+        <!-- Package Name -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Package Name *"
+            android:textSize="14sp"
+            android:paddingBottom="4dp" />
+
+        <EditText
+            android:id="@+id/metadata_package_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter package name"
+            android:inputType="text"
+            android:maxLines="1"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Description -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="14sp"
+            android:paddingBottom="4dp" />
+
+        <EditText
+            android:id="@+id/metadata_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter description"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:maxLines="4"
+            android:gravity="top"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Author -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Author (typed, not checked)"
+            android:textSize="14sp"
+            android:paddingBottom="4dp" />
+
+        <EditText
+            android:id="@+id/metadata_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter author name"
+            android:inputType="text"
+            android:maxLines="1"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Stage (D44): ATAK's PluginSpinner, so opening it cannot crash ATAK (PL-35, D46) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stage"
+            android:textSize="14sp"
+            android:paddingBottom="4dp" />
+
+        <com.atakmap.android.gui.PluginSpinner
+            android:id="@+id/metadata_stage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Position (V1.2): the phone's own, by ATAK's location, never the map; not editable -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Position"
+            android:textSize="14sp"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/metadata_position"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/metadata_cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/metadata_create_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

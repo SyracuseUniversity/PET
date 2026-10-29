@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- M7: the main flavour's description. The template's text described a
+         bare-bones demonstration plugin and carried TAK's distribution
+         statement, which the project has not made for this plugin. -->
+    <string name="app_desc">Blockchain-based evidence recording.</string>
+
+    <!-- will be wired in for 4.4 if the above is deemed acceptable -->
+    <string name="app_distro_statement">DISTRIBUTION STATEMENT A. Approved for public release: distribution unlimited.</string>
+
+
+</resources>

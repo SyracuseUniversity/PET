@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Add Stage Event (D44; Day 3 step 12): one stage on one evidence trace.
+    It replaces Sign Evidence Trace's dialog, which did not scroll (PL-34)
+    and whose role Spinner crashed ATAK (PL-35). Built in an AlertDialog
+    against ATAK's activity (D46); padding, not margins, on the ScrollView's
+    child (PL-37).
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Stage Event"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="12dp"
+            android:gravity="center" />
+
+        <!-- The trace it is added to; chosen before this form opens -->
+        <TextView
+            android:id="@+id/stage_event_trace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Stage: ATAK's PluginSpinner, so opening it cannot crash ATAK (PL-35, D46) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stage"
+            android:textSize="14sp"
+            android:paddingBottom="4dp" />
+
+        <com.atakmap.android.gui.PluginSpinner
+            android:id="@+id/stage_event_stage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Position (V1.2): the phone's own, taken again when Save is tapped; not editable -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Position"
+            android:textSize="14sp"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/stage_event_position"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Remarks (optional; typed, not checked)"
+            android:textSize="14sp"
+            android:paddingBottom="4dp" />
+
+        <EditText
+            android:id="@+id/stage_event_remarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter remarks"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:layout_marginBottom="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/stage_event_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/stage_event_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
